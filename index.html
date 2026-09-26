@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sam Gilmore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15171b;
+    --surface:#1c1f25;
+    --line:#2b2f37;
+    --text:#eceef0;
+    --muted:#8b909b;
+    --accent:#e2572b;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#15171b; --surface:#1c1f25; --line:#2b2f37; --text:#eceef0; --muted:#8b909b; --accent:#e2572b;
+    }
+  }
+  *{box-sizing:inherit; margin:0; padding:0;}
+  html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px); height:100%;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    min-height:100%;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  header.top{
+    position:sticky; top:env(safe-area-inset-top,0px);
+    background:rgba(21,23,27,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line); z-index:10;
+  }
+  header.top .wrap{display:flex; justify-content:space-between; align-items:center; height:56px;}
+  header.top .mark{font-family:'Oswald',sans-serif; font-weight:600; font-size:1.05rem; letter-spacing:.02em;}
+  header.top nav{display:flex; gap:22px;}
+  header.top nav a{color:var(--muted); font-size:.92rem;}
+  header.top nav a:hover{color:var(--text); text-decoration:none;}
+
+  .hero{padding:72px 0 48px; border-bottom:1px solid var(--line);}
+  .hero h1{
+    font-family:'Oswald',sans-serif; font-weight:700;
+    font-size:clamp(2.6rem,7vw,4.2rem); line-height:.98; letter-spacing:-.01em;
+  }
+  .hero .role{
+    font-family:'Oswald',sans-serif; font-weight:500; color:var(--accent);
+    font-size:1.15rem; margin-top:10px;
+  }
+  .hero p.lede{
+    max-width:60ch; color:var(--muted); margin-top:22px; font-size:1.02rem;
+  }
+
+  .stats{display:flex; gap:0; margin-top:36px; border-top:1px solid var(--line);}
+  .stats .stat{flex:1; padding:18px 20px 0; border-right:1px solid var(--line);}
+  .stats .stat:last-child{border-right:none;}
+  .stats .num{font-family:'Oswald',sans-serif; font-size:2rem; font-weight:600; color:var(--text);}
+  .stats .label{color:var(--muted); font-size:.85rem; margin-top:2px;}
+
+  section{padding:56px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-family:'Oswald',sans-serif; font-weight:600; font-size:1.5rem;
+    margin-bottom:28px;
+  }
+
+  .job{display:grid; grid-template-columns:150px 1fr; gap:20px; margin-bottom:36px;}
+  .job:last-child{margin-bottom:0;}
+  .job .when{color:var(--muted); font-size:.88rem; padding-top:3px;}
+  .job .title{font-weight:600; font-size:1.05rem;}
+  .job .org{color:var(--accent); font-size:.95rem; margin-top:2px;}
+  .job ul{margin:12px 0 0 18px; color:var(--muted); font-size:.94rem;}
+  .job li{margin-bottom:6px;}
+  .job li::marker{color:var(--accent);}
+
+  .skills{display:flex; flex-wrap:wrap; gap:10px 14px;}
+  .skills span{
+    font-size:.9rem; padding:7px 14px; border:1px solid var(--line); border-radius:3px; color:var(--text);
+  }
+
+  .edu .title{font-weight:600; font-size:1.05rem;}
+  .edu .org{color:var(--accent); font-size:.95rem; margin-top:2px;}
+  .edu .when{color:var(--muted); font-size:.88rem; margin-top:4px;}
+  .edu ul{margin:14px 0 0 18px; color:var(--muted); font-size:.94rem;}
+  .edu li{margin-bottom:6px;}
+  .edu li::marker{color:var(--accent);}
+
+  footer{padding:48px 0 64px; padding-bottom:calc(64px + env(safe-area-inset-bottom,0px));}
+  footer h2{margin-bottom:14px;}
+  footer p{color:var(--muted); max-width:50ch;}
+  .contact-list{margin-top:22px; display:flex; flex-direction:column; gap:8px; font-size:1rem;}
+
+  @media (max-width:600px){
+    header.top nav{gap:14px;}
+    .stats{flex-direction:column;}
+    .stats .stat{border-right:none; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:14px;}
+    .stats .stat:last-child{border-bottom:none; margin-bottom:0;}
+    .job{grid-template-columns:1fr; gap:6px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="mark">Sam Gilmore</span>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-bottom:none;">
+    <h1>Sam Gilmore</h1>
+    <div class="role">Marketing student &amp; retail sales leader</div>
+    <p class="lede">
+      Business Administration student majoring in Marketing at Mount Saint Vincent University, graduating May 2027.
+      Three years building customer relationships in fast-paced telecom and electronics retail, training new hires,
+      and coordinating in-store events — while playing varsity basketball and keeping up strong academic standing.
+    </p>
+    <div class="stats">
+      <div class="stat">
+        <div class="num">Top 2</div>
+        <div class="label">Sales associate, store ranking, 2025</div>
+      </div>
+      <div class="stat">
+        <div class="num">3 yrs</div>
+        <div class="label">Retail sales experience</div>
+      </div>
+      <div class="stat">
+        <div class="num">2×</div>
+        <div class="label">Academic All-Canadian</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="when">Mar 2025 –<br>Present</div>
+      <div>
+        <div class="title">Retail Sales Associate</div>
+        <div class="org">Best Buy Express — BCE Inc., Halifax, NS</div>
+        <ul>
+          <li>Ranked among the top 2 sales associates in one of the busiest stores in HRM; placed top 10 of all regional performers in 2025.</li>
+          <li>Train and onboard new hires on product knowledge, POS/inventory systems, and customer service standards.</li>
+          <li>Support planning and execution of in-store events and product launch promotions — merchandising, staffing, and timelines.</li>
+          <li>Maintain accuracy across customer account and inventory systems while processing high transaction volumes.</li>
+          <li>Explain complex telecom and smart home products in plain terms, reducing post-sale issues.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Jun – Oct 2024<br>Jul – Oct 2022</div>
+      <div>
+        <div class="title">Retail Sales Associate</div>
+        <div class="org">Bell — BCE Inc., Dartmouth &amp; Bedford, NS</div>
+        <ul>
+          <li>Guided customers on wireless devices, plans, and accessories, consistently exceeding monthly sales goals.</li>
+          <li>Processed 50+ daily transactions across customer account and POS systems with strong accuracy and policy compliance.</li>
+          <li>Trained teammates on product updates and service standards to keep the customer experience consistent.</li>
+          <li>Followed up with customers post-purchase to strengthen relationships and drive repeat business.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="when">Apr – Sep 2023</div>
+      <div>
+        <div class="title">Retail Salesperson</div>
+        <div class="org">The Source — BCE Inc., Dartmouth, NS</div>
+        <ul>
+          <li>Greeted and assisted 100+ customers daily with personalized product recommendations.</li>
+          <li>Exceeded monthly sales targets through consultative selling and service-focused solutions.</li>
+          <li>Generated qualified leads and converted prospects into new sales.</li>
+          <li>Supported inventory management, merchandising, and product demonstrations.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:44px;">
+      <h2 style="font-size:1.05rem; margin-bottom:16px; color:var(--muted); font-weight:500;">Skills</h2>
+      <div class="skills">
+        <span>Team training &amp; onboarding</span>
+        <span>Event &amp; promotion coordination</span>
+        <span>Customer account &amp; inventory systems</span>
+        <span>Consultative communication</span>
+        <span>Cross-shift coordination</span>
+        <span>Time management</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu">
+      <div class="title">Bachelor of Business Administration, Marketing</div>
+      <div class="org">Mount Saint Vincent University, Halifax, NS</div>
+      <div class="when">2022 – Present · Expected May 2027</div>
+      <ul>
+        <li>Men's Basketball Team, 2022–2025 — balanced varsity athletics with full-time studies.</li>
+        <li>Academic All-Canadian, 2022–2023 and 2024–2025.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <h2>Get in touch</h2>
+    <p>Open to marketing and retail leadership opportunities.</p>
+    <div class="contact-list">
+      <a href="mailto:gsgilmore5@gmail.com">gsgilmore5@gmail.com</a>
+      <a href="tel:9029816681">902-981-6681</a>
+      <span style="color:var(--muted);">Halifax, NS</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
